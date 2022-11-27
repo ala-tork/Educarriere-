@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Users list</h1>
+                        <h1>Universitys list</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -30,42 +30,35 @@
 
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <a href="{{ path('app_user_new') }}" class="btn btn-success" ><i class="fa-solid fa-circle-plus"></i> Add User</a>
+                                <a href="{{ path('Add_universitys') }}" class="btn btn-success" ><i class="fa-solid fa-circle-plus"></i> Add University</a>
                                 <table id="Datatable1" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th>Id</th>
-                                        <th>Email</th>
-                                        <th>Roles</th>
-
-                                        <th>FirstName</th>
-                                        <th>LastName</th>
+                                        <th>id</th>
+                                        <th>univesity Name</th>
+                                        <th>ville</th>
+                                        <th>Specialiter</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for user in users %}
+                                    {% for u in universitys %}
                                         <tr>
-                                            <td>{{ user.id }}</td>
-                                            <td>{{ user.email }}</td>
-                                            <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-
-                                            <td>{{ user.FirstName }}</td>
-                                            <td>{{ user.lastName }}</td>
+                                            <td>{{ u.id }}</td>
+                                            <td>{{ u.UniversityName }}</td>
+                                            <td>{{ u.ville.name }}</td>
                                             <td>
-                                                <div class="d-inline p-4" >
+                                                {%for s in u.specialites %}
+                                                    <ul>
+                                                        <li> {{s.FiliereName}}</li>
+                                                    </ul>
+                                                {% endfor %}
 
-                                                    <a href="{{ path('app_user_show' , {'id': user.id}) }}" ><i class="fa-regular fa-eye"></i></a>
-
-
-                                                    <a href="{{ path('app_user_edit', {'id': user.id}) }}" ><i class="fa-solid fa-pen-to-square"></i></a>
-
-                                                </div>
                                             </td>
-                                        </tr>
-                                    {% else %}
-                                        <tr>
-                                            <td colspan="7">no records found</td>
+                                            <td>
+                                                <a href="{{ path("updata_universitys",{id:u.id}) }}" style="padding: 40px" ><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <a href="{{ path("delete_universitys",{id:u.id}) }}" ><i class="fa-solid fa-trash"></i></a>
+                                            </td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
