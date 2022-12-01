@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Description{% endblock %}
+
+{% block body %}
+    <h1>Description</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ description.id }}</td>
+                <td>{{ description.contenu }}</td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_description_index') }}">back to list</a>
+
+    <a href="{{ path('app_description_edit', {'id': description.id}) }}">edit</a>
+
+    {{ include('description/_delete_form.html.twig') }}
+
+
+{% endblock %}

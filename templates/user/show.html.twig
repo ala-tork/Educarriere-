@@ -1,0 +1,62 @@
+{% extends 'dashbord_ctrl/DashbordBase.html.twig' %}
+{% block MainBody %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Dashboard</h1>
+                    </div><!-- /.col -->
+
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid" style="max-width: 600px">
+                <!-- Small boxes (Stat box) -->
+                <h1>User</h1>
+
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ user.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>FirstName</th>
+                        <td>{{ user.FirstName }}</td>
+                    </tr>
+                    <tr>
+                        <th>LastName</th>
+                        <td>{{ user.lastName }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Roles</th>
+                        <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+
+                <a href="{{ path('app_user_index') }}" class="btn btn-info">back to list</a>
+
+                <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-info">edit</a>
+
+                {{ include('user/_delete_form.html.twig') }}
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+{% endblock %}
+

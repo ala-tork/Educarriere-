@@ -1,0 +1,48 @@
+{% extends 'dashbord_ctrl/DashbordBase.html.twig' %}
+
+{% block MainBody %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Description métier</h1>
+                    </div><!-- /.col -->
+
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid " style="padding-top: 40px">
+                <!-- Small boxes (Stat box) -->
+
+                <a href="{{ path('app_description_new') }}" class="btn btn-success" >Create new</a>
+            
+        {% for description in descriptions %}
+        <textarea id="story" name="story"
+          rows="10" cols="50">
+           {{description.metierA.nom }}
+</textarea>
+										
+
+               
+                    <a href="{{ path('app_description_show', {'id': description.id}) }}">show</a>
+                    <a href="{{ path('app_description_edit', {'id': description.id}) }}">edit</a>
+            
+        {% else %}
+             colspan="6">no records found
+           
+        {% endfor %}
+        
+       
+                
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+{% endblock %}

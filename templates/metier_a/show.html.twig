@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MetierA{% endblock %}
+
+{% block body %}
+    <h1>MetierA</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ metier_a.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ metier_a.nom }}</td>
+            </tr>
+            <tr>
+                <th>Salaire</th>
+                <td>{{ metier_a.salaire }}</td>
+            </tr>
+            <tr>
+                <th>Chomage</th>
+                <td>{{ metier_a.chomage }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ metier_a.Description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_metier_a_index') }}">back to list</a>
+
+    <a href="{{ path('app_metier_a_edit', {'id': metier_a.id}) }}">edit</a>
+
+    {{ include('metier_a/_delete_form.html.twig') }}
+{% endblock %}
