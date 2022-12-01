@@ -30,7 +30,6 @@
 
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <a href="{{ path('app_user_new') }}" class="btn btn-success" ><i class="fa-solid fa-circle-plus"></i> Add User</a>
                                 <table id="Datatable1" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
@@ -58,7 +57,7 @@
                                                     <a href="{{ path('app_user_show' , {'id': user.id}) }}" ><i class="fa-regular fa-eye"></i></a>
 
 
-                                                    <a href="{{ path('app_user_edit', {'id': user.id}) }}" ><i class="fa-solid fa-pen-to-square"></i></a>
+                                                    <a href="{{ path('app_user_delete', {'id': user.id}) }}" ><i class="fa-solid fa-trash"></i></a>
 
                                                 </div>
                                             </td>
