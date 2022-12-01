@@ -8,7 +8,7 @@
 		<nav id="navbar" class="navbar" >
 			<ul>
 				<li>
-					<a class="nav-link scrollto active" href="#hero">Home</a>
+					<a class="nav-link scrollto active" href="{{ path("app_landing_page_ctrl") }}">Home</a>
 				</li>
 				<li>
 					<a class="nav-link scrollto" href="#about">About</a>
@@ -32,10 +32,42 @@
 				<li>
 					<a class="nav-link scrollto" href="#contact">Contact</a>
 				</li>
+
 				{% if app.user %}
-					<li>
-						<a class="getstarted scrollto" id="loginBtn" href="{{path('app_logout')}}">logout</a>
-					</li>
+				<div class="dropdown">
+					<a
+							class="dropdown-toggle d-flex align-items-center hidden-arrow"
+							href="#"
+							id="navbarDropdownMenuAvatar"
+							role="button"
+							data-mdb-toggle="dropdown"
+							aria-expanded="false"
+					>
+						<img
+								src="{{ asset("assets/img/user.jpg") }}"
+								class="rounded-circle"
+								height="25"
+								alt="Black and White Portrait of a Man"
+								loading="lazy"
+						/>
+						{{ user.FirstName }}{{ user.lastName }}
+					</a>
+					<ul
+							class="dropdown-menu dropdown-menu-end"
+							aria-labelledby="navbarDropdownMenuAvatar"
+					>
+						<li>
+							<a class="dropdown-item" href="#">My profile</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">Settings</a>
+						</li>
+						<li>
+							<a class="btn btn-danger" href="{{ path("app_logout") }}">Logout</a>
+						</li>
+					</ul>
+				</div>
+
 				{% else %}
 					<li>
 						<a class="getstarted scrollto" id="loginBtn" href="{{path('app_login')}}">Login</a>
