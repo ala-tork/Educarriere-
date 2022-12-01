@@ -14,9 +14,10 @@
                             <thead>
                             <tr>
                                 <th>id</th>
-                                <th>univesity Name</th>
-                                <th>ville</th>
                                 <th>Specialiter</th>
+                                <th>ville</th>
+                                <th>University</th>
+                                <th>Score</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -24,10 +25,33 @@
                                 <tr>
                                     <td>{{ f.id }}</td>
                                     <td>{{ f.FiliereName }}</td>
+                                    <td>
                                     {% for u in f.university %}
-                                    <td>{{ u.ville }}</td>
-                                    <td>{{u.UniversityName}}</td>
+
+                                        <ul>
+                                            <li>
+                                                {{ u.ville }}<hr/>
+                                            </li>
+                                        </ul>
+
                                     {% endfor %}
+                                    </td>
+
+                                    <td>
+                                        {% for u in f.university %}
+                                        <ul>
+                                            <li>
+                                                {{u.UniversityName}}<hr/>
+                                            </li>
+                                        </ul>
+                                        {% endfor %}
+                                    </td>
+
+                                    <td>
+                                        {% for u in f.university %}
+                                        {% endfor %}
+                                    </td>
+
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -49,6 +73,7 @@
                 "autoWidth": false,
                 "searching":true,
                 "info": false,
+
             }).input().appendTo('#Datatable1_wrapper .col-md-6');
         });
     </script>
