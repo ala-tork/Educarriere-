@@ -47,14 +47,7 @@
                                             <td>{{ u.id }}</td>
                                             <td>{{ u.UniversityName }}</td>
                                             <td>{{ u.ville.name }}</td>
-                                            <td>
-                                                {%for s in u.specialites %}
-                                                    <ul>
-                                                        <li> {{s.FiliereName}}</li>
-                                                    </ul>
-                                                {% endfor %}
-
-                                            </td>
+                                            <td>{{u.filiere.FiliereName}}</td>
                                             <td>
                                                 <a href="{{ path("updata_universitys",{id:u.id}) }}" style="padding: 40px" ><i class="fa-solid fa-pen-to-square"></i></a>
                                                 <a href="{{ path("delete_universitys",{id:u.id}) }}" ><i class="fa-solid fa-trash"></i></a>

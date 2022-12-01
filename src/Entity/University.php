@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\UniversityRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -26,13 +24,10 @@ class University
     #[Assert\NotNull]
     private ?Governorats $ville = null;
 
-    #[ORM\ManyToMany(targetEntity: Filiere::class, inversedBy: 'universities')]
-    private Collection $specialites;
+    #[ORM\ManyToOne(inversedBy: 'university')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Filiere $filiere = null;
 
-    public function __construct()
-    {
-        $this->specialites = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -63,27 +58,18 @@ class University
         return $this;
     }
 
-    /**
-     * @return Collection<int, Filiere>
-     */
-    public function getSpecialites(): Collection
+    public function getFiliere(): ?Filiere
     {
-        return $this->specialites;
+        return $this->filiere;
     }
 
-    public function addSpecialite(Filiere $specialite): self
+    public function setFiliere(?Filiere $filiere): self
     {
-        if (!$this->specialites->contains($specialite)) {
-            $this->specialites->add($specialite);
-        }
+        $this->filiere = $filiere;
 
         return $this;
     }
 
-    public function removeSpecialite(Filiere $specialite): self
-    {
-        $this->specialites->removeElement($specialite);
 
-        return $this;
-    }
+
 }

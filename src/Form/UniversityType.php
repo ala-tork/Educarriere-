@@ -28,7 +28,7 @@ class UniversityType extends AbstractType
                         ->orderBy('S.name', 'ASC');
                 },
             ])
-            ->add('specialites',EntityType::class,[
+            ->add('filiere',EntityType::class,[
                 'class' => Filiere::class,
                 'multiple' => true,
                 'expanded' => false,
@@ -37,7 +37,8 @@ class UniversityType extends AbstractType
                     return $er->createQueryBuilder('S')
                         ->orderBy('S.FiliereName', 'ASC');
                 },
-            ]);
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -25,16 +25,16 @@ a:hover {
   text-decoration: none;
 }
 h1 a{
-    color: #47b2e4;
-    text-transform: capitalize;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 70px;
-    text-decoration: none;
+  color: #47b2e4;
+  text-transform: capitalize;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 70px;
+  text-decoration: none;
 }
 h1 a:hover{
-    color: #73c5eb !important;
-    font-size: 73px;
-    text-decoration: none;
+  color: #73c5eb !important;
+  font-size: 73px;
+  text-decoration: none;
 }
 h1,
 h2,
@@ -170,7 +170,7 @@ h6 {
 # Navigation Menu
 --------------------------------------------------------------*/
 /**
-* Desktop Navigation 
+* Desktop Navigation
 */
 .navbar {
   padding: 0;
@@ -300,7 +300,7 @@ h6 {
 }
 
 /**
-* Mobile Navigation 
+* Mobile Navigation
 */
 .mobile-nav-toggle {
   color: #fff;
@@ -564,6 +564,7 @@ section {
 .section-title {
   text-align: center;
   padding-bottom: 30px;
+  padding-top: 70px;
 }
 
 .section-title h2 {

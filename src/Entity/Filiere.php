@@ -18,14 +18,15 @@ class Filiere
     #[ORM\Column(length: 255)]
     private ?string $FiliereName = null;
 
-    #[ORM\ManyToMany(targetEntity: University::class, mappedBy: 'specialites')]
-    private Collection $universities;
+    #[ORM\OneToMany(mappedBy: 'filiere', targetEntity: University::class)]
+    private Collection $university;
 
     public function __construct()
     {
-        $this->universities = new ArrayCollection();
+        $this->university = new ArrayCollection();
     }
 
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -43,19 +44,25 @@ class Filiere
         return $this;
     }
 
+
+    public function __toString(): string
+    {
+        return $this->FiliereName;
+    }
+
     /**
      * @return Collection<int, University>
      */
-    public function getUniversities(): Collection
+    public function getUniversity(): Collection
     {
-        return $this->universities;
+        return $this->university;
     }
 
     public function addUniversity(University $university): self
     {
-        if (!$this->universities->contains($university)) {
-            $this->universities->add($university);
-            $university->addSpecialite($this);
+        if (!$this->university->contains($university)) {
+            $this->university->add($university);
+            $university->setFiliere($this);
         }
 
         return $this;
@@ -63,14 +70,15 @@ class Filiere
 
     public function removeUniversity(University $university): self
     {
-        if ($this->universities->removeElement($university)) {
-            $university->removeSpecialite($this);
+        if ($this->university->removeElement($university)) {
+            // set the owning side to null (unless already changed)
+            if ($university->getFiliere() === $this) {
+                $university->setFiliere(null);
+            }
         }
 
         return $this;
     }
-    public function __toString(): string
-    {
-        return $this->FiliereName;
-    }
+
+
 }
