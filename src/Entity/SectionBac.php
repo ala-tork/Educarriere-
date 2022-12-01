@@ -18,14 +18,6 @@ class SectionBac
     #[ORM\Column(length: 255)]
     private ?string $SectionBacName = null;
 
-    #[ORM\ManyToMany(targetEntity: University::class, mappedBy: 'specialites')]
-    private Collection $universities;
-
-    public function __construct()
-    {
-        $this->universities = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -39,33 +31,6 @@ class SectionBac
     public function setSectionBacName(string $SectionBacName): self
     {
         $this->SectionBacName = $SectionBacName;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, University>
-     */
-    public function getUniversities(): Collection
-    {
-        return $this->universities;
-    }
-
-    public function addUniversity(University $university): self
-    {
-        if (!$this->universities->contains($university)) {
-            $this->universities->add($university);
-            $university->addSpecialite($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUniversity(University $university): self
-    {
-        if ($this->universities->removeElement($university)) {
-            $university->removeSpecialite($this);
-        }
 
         return $this;
     }

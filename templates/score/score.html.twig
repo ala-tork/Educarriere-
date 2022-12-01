@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% block MainBody %}
 
-{% block body %}
+    {% set formtype, year = 'Calculateur Score BAC ', '2023' %}
 
-    {% set typeform, year = 'Calculator Score BAC ', '2023!' %}
+    <h1>{{ formtype }}{{ year }}</h1>
 
-    <h1>{{ typeform }}{{ year }}</h1>
+    {{ form(form) }}
 
 {% endblock %}

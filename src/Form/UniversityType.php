@@ -25,7 +25,7 @@ class UniversityType extends AbstractType
                 'required'=>true,
                 'query_builder' => function (GovernoratsRepository $er) {
                     return $er->createQueryBuilder('S')
-                        ->orderBy('S.name', 'ASC');
+                        ->orderBy('S.SectionBacName', 'ASC');
                 },
             ])
             ->add('filiere',EntityType::class,[
