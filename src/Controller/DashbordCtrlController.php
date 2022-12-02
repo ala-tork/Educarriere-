@@ -11,6 +11,6 @@ class DashbordCtrlController extends AbstractController
     #[Route('/Dashbord', name: 'app_dashbord_ctrl')]
     public function Dashbord(): Response
     {
-        return $this->render('dashbord_ctrl/testDashbord.html.twig');
+        return $this->redirectToRoute("app_user_index");
     }
 }

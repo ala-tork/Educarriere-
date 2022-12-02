@@ -1,0 +1,69 @@
+{% extends 'dashbord_ctrl/DashbordBase.html.twig' %}
+
+{% block MainBody %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Métier Avenir</h1>
+                    </div><!-- /.col -->
+
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid " style="padding-top: 40px">
+                <!-- Small boxes (Stat box) -->
+
+
+                    <div class="card" style="width: 100%">
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">  <h1 > {{ metier_a.nom }} </h1> </h5>
+                        <p class="card-text">{{ metier_a.Description }}</p>
+                        <a href="{{ path('app_metier_a_index') }}" class="btn btn-primary">back to list</a>
+                        
+                       <a href="{{ path('app_metier_a_edit', {'id': metier_a.id}) }}" class="btn btn-primary">edit</a>
+
+
+
+
+
+                        {{ include('metier_a/_delete_form.html.twig') }}
+                    </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+               
+           {#  <table class="table mt-6" style="padding-top: 40px">
+                 
+                <th>Description</th>
+                <td>{{ metier_a.Description }}</td>
+            </tr>
+        </tbody>
+    </table>  #}
+
+        </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+{% endblock %}

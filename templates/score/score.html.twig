@@ -1,0 +1,33 @@
+{% extends 'FrontOfficeTemplate/BaseForntOfficeTemplate.html.twig' %}
+{% block Body %}
+<div id="main">
+        <!-- ======= About Us Section ======= -->
+        <section id="about" class="about">
+            <div class="container" data-aos="fade-up">
+                <div class="section-title">
+                    <h2>{% set formtype, year = 'Calculateur Score BAC ', '2023' %}</h2>
+                </div>
+                <div class="row content">
+
+                    <div class="col">
+
+                        <h1>{{ formtype }}{{ year }}</h1>
+
+                    {{ form_start(form) }}
+                        {{ form_row(form.MG) }}
+                        {{ form_row(form.sectionBac) }}
+                        <div class="form-group">
+                            <input type="submit" value="Caluler" class="btn float-right btn-outline-success"/>
+                        </div>
+                    {{ form_end(form) }}
+                    </div>
+
+                </div>
+
+        </section>
+        <!-- End About Us Section -->
+    </div>
+
+
+{% endblock %}
+
