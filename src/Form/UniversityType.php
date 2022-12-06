@@ -30,7 +30,7 @@ class UniversityType extends AbstractType
             ])
             ->add('filiere',EntityType::class,[
                 'class' => Filiere::class,
-                'multiple' => false,
+                'multiple' => true,
                 'expanded' => false,
                 'required'=>true,
                 'query_builder' => function (FiliereRepository $er) {

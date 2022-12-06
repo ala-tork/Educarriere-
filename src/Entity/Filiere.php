@@ -18,13 +18,17 @@ class Filiere
     #[ORM\Column(length: 255)]
     private ?string $FiliereName = null;
 
-    #[ORM\OneToMany(mappedBy: 'filiere', targetEntity: University::class)]
-    private Collection $university;
+    #[ORM\ManyToMany(targetEntity: University::class, mappedBy: 'Filiere')]
+    private Collection $universities;
 
     public function __construct()
     {
-        $this->university = new ArrayCollection();
+        $this->universities = new ArrayCollection();
     }
+
+
+
+
 
     
     public function getId(): ?int
@@ -53,16 +57,16 @@ class Filiere
     /**
      * @return Collection<int, University>
      */
-    public function getUniversity(): Collection
+    public function getUniversities(): Collection
     {
-        return $this->university;
+        return $this->universities;
     }
 
     public function addUniversity(University $university): self
     {
-        if (!$this->university->contains($university)) {
-            $this->university->add($university);
-            $university->setFiliere($this);
+        if (!$this->universities->contains($university)) {
+            $this->universities->add($university);
+            $university->addFiliere($this);
         }
 
         return $this;
@@ -70,15 +74,14 @@ class Filiere
 
     public function removeUniversity(University $university): self
     {
-        if ($this->university->removeElement($university)) {
-            // set the owning side to null (unless already changed)
-            if ($university->getFiliere() === $this) {
-                $university->setFiliere(null);
-            }
+        if ($this->universities->removeElement($university)) {
+            $university->removeFiliere($this);
         }
 
         return $this;
     }
+
+
 
 
 }

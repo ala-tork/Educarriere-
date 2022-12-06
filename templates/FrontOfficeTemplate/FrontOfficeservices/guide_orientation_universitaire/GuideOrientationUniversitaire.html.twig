@@ -26,7 +26,7 @@
                                     <td>{{ f.id }}</td>
                                     <td>{{ f.FiliereName }}</td>
                                     <td>
-                                    {% for u in f.university %}
+                                    {% for u in f.universities %}
 
                                         <ul>
                                             <li>
@@ -38,7 +38,7 @@
                                     </td>
 
                                     <td>
-                                        {% for u in f.university %}
+                                        {% for u in f.universities %}
                                         <ul>
                                             <li>
                                                 {{u.UniversityName}}<hr/>
@@ -48,7 +48,7 @@
                                     </td>
 
                                     <td>
-                                        {% for u in f.university %}
+                                        {% for u in f.universities %}
                                         {% endfor %}
                                     </td>
 
