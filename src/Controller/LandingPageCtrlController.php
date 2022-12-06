@@ -15,4 +15,5 @@ class LandingPageCtrlController extends AbstractController
         #dd($user);
         return $this->render('FrontOfficeTemplate/BaseForntOfficeTemplate.html.twig',['user'=>$user]);
     }
+
 }

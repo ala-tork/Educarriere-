@@ -1,0 +1,30 @@
+{% extends 'FrontOfficeTemplate/BaseForntOfficeTemplate.html.twig' %}
+{% block Body %}
+    <div id="main">
+        <!-- ======= About Us Section ======= -->
+        <section id="about" class="about">
+            <div class="container" data-aos="fade-up">
+                <div class="section-title">
+                    <h2>Update your Profil</h2>
+                </div>
+                <div class="row content">
+
+                    <div class="col " >
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+
+                        <button type="submit" class="btn btn-outline-success">Update</button>
+                        <a href="{{ path('profil') }}" type="button" class="btn btn-outline-secondary">cancel</a>
+                        {{ form_end(form) }}
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- End About Us Section -->
+    </div>
+
+{% endblock %}
+
+
+
