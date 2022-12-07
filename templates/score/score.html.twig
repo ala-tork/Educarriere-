@@ -5,29 +5,36 @@
         <section id="about" class="about">
             <div class="container" data-aos="fade-up">
                 <div class="section-title">
-                    <h2>{% set formtype, year = 'Calculateur Score BAC ', '2023' %}</h2>
+                    <h2>{% set formtype, year = 'Calculateur Score BAC ', '2023' %}
+                        {{ formtype }}{{ year }}
+                    </h2>
                 </div>
                 <div class="row content">
 
                     <div class="col">
 
-                        <h1>{{ formtype }}{{ year }}</h1>
-
                     {{ form_start(form) }}
-                        {{ form_row(form.MG) }}
                         {{ form_row(form.sectionBac) }}
                         <div class="form-group">
-                            <input type="submit" value="Caluler" class="btn float-right btn-outline-success"/>
+                            <input type="submit" value="next" class="btn float-right btn-outline-success"/>
                         </div>
-                    {{ form_end(form) }}
+                    {{ form_end(form,{render_rest:false}) }}
                     </div>
 
                 </div>
-
+            </div>
         </section>
         <!-- End About Us Section -->
     </div>
-
-
+{% block Script %}
+    {#
+    <script>
+        $( "#score_sectionBac" ).change(function() {
+            var option=$("#score_sectionBac option:selected").text();
+            alert(option);
+        });
+    </script>
+    #}
+{% endblock %}
 {% endblock %}
 

@@ -63,15 +63,15 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    {% block Scripts %}
-        <script>
-            $(document).ready(function() {
-                $('.-select2').select2({
-                    placeholder:' '
-                });
+{% block Scripts %}
+    <script>
+        $(document).ready(function() {
+            $('.-select2').select2({
+                placeholder:' '
             });
-        </script>
-    {% endblock %}
+        });
+    </script>
+{% endblock %}
 {% endblock %}
 
 
