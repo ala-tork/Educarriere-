@@ -24,7 +24,7 @@ class MetierA
     #[ORM\Column(length: 255)]
     private ?string $chomage = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255000)]
     private ?string $Description = null;
 
 

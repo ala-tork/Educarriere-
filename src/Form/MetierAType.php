@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\MetierA;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,7 +16,7 @@ class MetierAType extends AbstractType
             ->add('nom')
             ->add('salaire')
             ->add('chomage')
-            ->add('Description')
+            ->add('Description',TextareaType::class)
         ;
     }
 
