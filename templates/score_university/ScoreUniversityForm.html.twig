@@ -32,11 +32,15 @@
                                     {{ form_start(form) }}
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">university</label>
-                                        {{ form_widget(form.UniversityName,{'attr':{'placeholder':'university name',"class":"form-control"}}) }}
+                                        {{ form_widget(form.university,{'attr':{'placeholder':'chosse university',"class":"form-control -select2"}}) }}
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">ville</label>
-                                        {{ form_widget(form.ville,{'attr':{'placeholder':'',"class":"form-control -select2"}}) }}
+                                        <label for="exampleInputEmail1" class="form-label">Speciality</label>
+                                        {{ form_widget(form.Filiere,{'attr':{'placeholder':'',"class":"form-control -select2"}}) }}
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Score</label>
+                                        {{ form_widget(form.score,{'attr':{'placeholder':'put score',"class":"form-control"}}) }}
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" value="{{ button }}" class="btn-lg float-right btn-success m-4">

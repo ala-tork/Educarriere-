@@ -28,16 +28,6 @@ class UniversityType extends AbstractType
                         ->orderBy('S.name', 'ASC');
                 },
             ])
-            ->add('filiere',EntityType::class,[
-                'class' => Filiere::class,
-                'multiple' => true,
-                'expanded' => false,
-                'required'=>true,
-                'query_builder' => function (FiliereRepository $er) {
-                    return $er->createQueryBuilder('S')
-                        ->orderBy('S.FiliereName', 'ASC');
-                },
-            ])
         ;
     }
 

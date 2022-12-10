@@ -18,13 +18,15 @@ class Filiere
     #[ORM\Column(length: 255)]
     private ?string $FiliereName = null;
 
-    #[ORM\ManyToMany(targetEntity: University::class, mappedBy: 'Filiere')]
-    private Collection $universities;
+    #[ORM\OneToMany(mappedBy: 'Filiere', targetEntity: ScoreUniversity::class)]
+    private Collection $scoreUniversities;
 
     public function __construct()
     {
-        $this->universities = new ArrayCollection();
+        $this->scoreUniversities = new ArrayCollection();
     }
+
+
 
 
 
@@ -55,27 +57,30 @@ class Filiere
     }
 
     /**
-     * @return Collection<int, University>
+     * @return Collection<int, ScoreUniversity>
      */
-    public function getUniversities(): Collection
+    public function getScoreUniversities(): Collection
     {
-        return $this->universities;
+        return $this->scoreUniversities;
     }
 
-    public function addUniversity(University $university): self
+    public function addScoreUniversity(ScoreUniversity $scoreUniversity): self
     {
-        if (!$this->universities->contains($university)) {
-            $this->universities->add($university);
-            $university->addFiliere($this);
+        if (!$this->scoreUniversities->contains($scoreUniversity)) {
+            $this->scoreUniversities->add($scoreUniversity);
+            $scoreUniversity->setFiliere($this);
         }
 
         return $this;
     }
 
-    public function removeUniversity(University $university): self
+    public function removeScoreUniversity(ScoreUniversity $scoreUniversity): self
     {
-        if ($this->universities->removeElement($university)) {
-            $university->removeFiliere($this);
+        if ($this->scoreUniversities->removeElement($scoreUniversity)) {
+            // set the owning side to null (unless already changed)
+            if ($scoreUniversity->getFiliere() === $this) {
+                $scoreUniversity->setFiliere(null);
+            }
         }
 
         return $this;

@@ -26,13 +26,15 @@ class University
     #[Assert\NotNull]
     private ?Governorats $ville = null;
 
-    #[ORM\ManyToMany(targetEntity: Filiere::class, inversedBy: 'universities')]
-    private Collection $Filiere;
+    #[ORM\OneToMany(mappedBy: 'university', targetEntity: ScoreUniversity::class)]
+    private Collection $scoreUniversities;
 
     public function __construct()
     {
-        $this->Filiere = new ArrayCollection();
+        $this->scoreUniversities = new ArrayCollection();
     }
+
+
 
 
 
@@ -67,30 +69,38 @@ class University
     }
 
     /**
-     * @return Collection<int, Filiere>
+     * @return Collection<int, ScoreUniversity>
      */
-    public function getFiliere(): Collection
+    public function getScoreUniversities(): Collection
     {
-        return $this->Filiere;
+        return $this->scoreUniversities;
     }
 
-    public function addFiliere(Filiere $filiere): self
+    public function addScoreUniversity(ScoreUniversity $scoreUniversity): self
     {
-        if (!$this->Filiere->contains($filiere)) {
-            $this->Filiere->add($filiere);
+        if (!$this->scoreUniversities->contains($scoreUniversity)) {
+            $this->scoreUniversities->add($scoreUniversity);
+            $scoreUniversity->setUniversity($this);
         }
 
         return $this;
     }
 
-    public function removeFiliere(Filiere $filiere): self
+    public function removeScoreUniversity(ScoreUniversity $scoreUniversity): self
     {
-        $this->Filiere->removeElement($filiere);
+        if ($this->scoreUniversities->removeElement($scoreUniversity)) {
+            // set the owning side to null (unless already changed)
+            if ($scoreUniversity->getUniversity() === $this) {
+                $scoreUniversity->setUniversity(null);
+            }
+        }
 
         return $this;
     }
-
-
+    public function __toString(): string
+    {
+        return $this->UniversityName;
+    }
 
 
 }

@@ -21,40 +21,32 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for f in filiers %}
+                            {% for x in sc %}
                                 <tr>
-                                    <td>{{ f.id }}</td>
-                                    <td>{{ f.FiliereName }}</td>
+                                    <td>{{ x.Filiere.id }}</td>
+                                    <td>{{ x.Filiere.FiliereName }}</td>
                                     <td>
-                                    {% for u in f.scoreUniversities %}
-
                                         <ul>
                                             <li>
-                                                {{u.university.ville}}<hr/>
+                                                {{x.university.ville}}<hr/>
                                             </li>
                                         </ul>
-                                    {% endfor %}
                                     </td>
-
                                     <td>
-                                        {% for u in f.scoreUniversities %}
                                         <ul>
                                             <li>
-                                                {{u.university}}<hr/>
+                                                {{x.university.UniversityName}}<hr/>
                                             </li>
                                         </ul>
-                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li>
+                                                {{x.score}}<hr/>
+                                            </li>
+                                        </ul>
                                     </td>
 
-                                    <td>
-                                        {% for u in f.scoreUniversities %}
-                                            <ul>
-                                                <li>
-                                                    {{u.score}}<hr/>
-                                                </li>
-                                            </ul>
-                                        {% endfor %}
-                                    </td>
 
                                 </tr>
                             {% endfor %}
@@ -75,7 +67,6 @@
                                 <p class="text-muted text-center"></p>
                                 {{ form_start(filtre) }}
                                 <ul class="list-group list-group-unbordered mb-3">
-                                    {#
                                     <li class="list-group-item">
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">ville</label>
@@ -87,8 +78,6 @@
                                             {{ form_widget(filtre.university,{'attr':{'placeholder':'university name',"class":"form-control"}}) }}
                                         </div>
                                     </li>
-                                    #}
-
                                     <li class="list-group-item">
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">Sceciality</label>
@@ -102,7 +91,7 @@
                                     <input type="submit" value="Filtrer" class="btn btn-success m-4">
                                 </div>
 
-                                {{ form_end(filtre,{render_rest:false}) }}
+                                {{ form_end(filtre) }}
                             </div>
                             <!-- /.card-body -->
                         </div>

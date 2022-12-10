@@ -7,7 +7,6 @@ use App\Entity\SectionBac;
 use App\Repository\SectionBacRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -34,6 +33,7 @@ class ScoreType extends AbstractType
 
             ->add('sectionBac',EntityType::class,[
                 'class'=>SectionBac::class,
+                'placeholder' => 'choisir une section',
                 'multiple'=>false,
                 'expanded'=>false,
                 'required'=>true,
