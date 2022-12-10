@@ -56,6 +56,7 @@ class ScoreController extends AbstractController
     public function informatique(Request $request):Response
     {
         $scoreInfomatique=0;
+        $scorre=0;
         $score = new Score();
         $user = $this->getUser();
         $form=$this->createForm(ScoreType::class,$score);
@@ -72,18 +73,21 @@ class ScoreController extends AbstractController
             $bd=$score->getMoyenneBD();
 
             $scoreInfomatique=(($moyenne_bac*4)+($math*1.5)+($algo*0.5)+($physique*0.5)+(($tic+$bd)*0.25)+(($fr+$an)*1));
+            $scorre=($scoreInfomatique+($scoreInfomatique*7)/100);
             #dd($scoreInfomatique);
         }
         return $this->render('score/scoreInformatique.html.twig', [
             'form'=>$form->createView(),
             'user'=>$user,
             'score'=>$scoreInfomatique,
+            'SCORRE'=>$scorre
         ]);
     }
     #[Route('/math',name:"score_math")]
     public function math(Request $request):Response
     {
         $scoreMath=0;
+        $scorre=0;
         $score = new Score();
         $user = $this->getUser();
         $form=$this->createForm(ScoreType::class,$score);
@@ -98,12 +102,14 @@ class ScoreController extends AbstractController
             $science=$score->getMoyenneScience();
 
             $scoreMath=(($moyenne_bac*4)+($math*2)+($physique*1.5)+($science*0.5)+(($fr+$an)*1));
+            $scorre=($scoreMath+($scoreMath*7)/100);
             #dd($scoreInfomatique);
         }
         return $this->render('score/scoreMath.html.twig', [
             'form'=>$form->createView(),
             'user'=>$user,
-            'score'=>$scoreMath
+            'score'=>$scoreMath,
+            'SCORRE'=>$scorre
         ]);
     }
 }
