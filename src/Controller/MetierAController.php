@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\MetierA;
 use App\Form\MetierAType;
 use App\Repository\MetierARepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/metier/a')]
+#[Route('/metier')]
+#[Security("is_granted('ROLE_ADMIN')", statusCode:404, message:"Resource not found.")]
 class MetierAController extends AbstractController
 {
     #[Route('/', name: 'app_metier_a_index', methods: ['GET'])]

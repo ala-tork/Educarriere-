@@ -35,6 +35,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 10, nullable: true)]
     private ?string $lastName = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Score $score = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -125,6 +128,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastName(?string $lastName): self
     {
         $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    public function getScore(): ?Score
+    {
+        return $this->score;
+    }
+
+    public function setScore(?Score $score): self
+    {
+        $this->score = $score;
 
         return $this;
     }

@@ -17,6 +17,15 @@
                         Les Metiers
                     </h2>
                 </div>
+                <div class="row g-3">
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                        <div class="input-group ">
+                            <span class="input-group-text" id="basic-addon1"><button id="sarchbtn" class="btn-outline-success"><i class="fa-solid fa-magnifying-glass"></i></button></span>
+                            <input type="text" class="form-control" id="search" placeholder="chercher avec nom metier" value=""/>
+                        </div>
+                    </div>
+                </div>
                     <div>
                         <!-- Content Wrapper. Contains page content -->
                         <div class="content">
@@ -28,9 +37,9 @@
 
                                         {% for m in metiers %}
                                         <!-- /.col -->
-                                        <div class="col-md-9" style="margin-bottom: 15px">
+                                        <div class="col-md-9" style="margin-bottom: 15px" id="mydata">
                                             <div class="card">
-                                                <div class="card-body">
+                                                <div class="card-body" >
                                                     <div class="tab-content">
                                                         <div class="active tab-pane" id="activity">
                                                             <!-- Post -->
@@ -70,7 +79,7 @@
 
                                     </div>
                                     <!-- /.card -->
-                                    <div class="col-md-3" style="position:fixed; right:10px; top:23%">
+                                    <div class="col-md-3" style="position:fixed; right:10px; top:26%">
 
                                         <!-- filtre -->
                                         <div class="card card-primary card-outline">
@@ -82,10 +91,10 @@
                                                 <h3 class="profile-username text-center">Filtrer</h3>
 
                                                 <p class="text-muted text-center"></p>
-
+                                                {{ form_start(form) }}
                                                 <ul class="list-group list-group-unbordered mb-3">
                                                     <li class="list-group-item">
-                                                        <b>Followers</b> <a class="float-right">1,322</a>
+
                                                     </li>
                                                     <li class="list-group-item">
                                                         <b>Following</b> <a class="float-right">543</a>
@@ -95,7 +104,11 @@
                                                     </li>
                                                 </ul>
 
-                                                <a href="#" class="btn btn-primary btn-block"><b>Filter</b></a>
+                                                <div class="form-group">
+                                                    <input type="submit" value="Filtrer" class="btn btn-success m-4">
+                                                </div>
+
+                                                {{ form_end(form,{render_rest:false}) }}
                                             </div>
                                             <!-- /.card-body -->
                                         </div>
@@ -103,8 +116,33 @@
                                     </div>
                                 </div>
                                 <!-- /.col -->
+                                <div class="row">
+                                    <div class="col-4"></div>
+                                    <div class="col-4">
+                                        {% if isPaginated is defined and isPaginated %}
+                                            <div class="row align-items-center mt-4">
+                                                <nav aria-label="col Page navigation example">
+                                                    <ul class="pagination">
+                                                        {% if page>1 %}
+                                                            <li class="page-item"><a class="page-link" id="page" href="{{ path('show_metiers',{page:page-1,nbr:nbr}) }}">Previous</a></li>
+                                                        {% endif %}
+                                                        {% for i in range(1,nbrpage) %}
+                                                            <li class="page-item"><a class="page-link" href="{{ path('show_metiers',{page:i,nbr:nbr}) }}">{{ i }}</a></li>
+                                                        {% endfor %}
+                                                        {% if page<nbrpage %}
+                                                            <li class="page-item"><a class="page-link" href="{{ path('show_metiers',{page:page+1,nbr:nbr}) }}">Next</a></li>
+                                                        {% endif %}
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+
                             </section>
                             <!-- /.row -->
+
                         </div><!-- /.container-fluid -->
             </section>
             <!-- /.content -->
@@ -122,6 +160,29 @@
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+    <script>
+        /*
+        $(document).ready(function(){
+            $("#search").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#mydata *").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });*/
+        $(function(){
+            // bind change event to select
+            $('#sarchbtn').on('click', function () {
+                //var url = $(this).val(); // get selected value
+                //if (url) { // require a URL
+                var value = $('#search').val().toLowerCase();
+                var page = $('#page').text().toLowerCase();
+                   window.location = "http://localhost:8000/metiers/"+value; // redirect
+                //}
+                return false;
+            });
+        });
+    </script>
 
 {% endblock %}
 {% endblock %}

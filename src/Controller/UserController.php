@@ -6,16 +6,18 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-#[Route('/user')]
+#[Route('/Dashbord')]
+#[Security("is_granted('ROLE_ADMIN')", statusCode:404, message:"Resource not found.")]
 class UserController extends AbstractController
 {
 
-    #[Route('/list', name: 'app_user_index', methods: ['GET'])]
+    #[Route('/Userslist', name: 'app_user_index', methods: ['GET'])]
     public function userslist(UserRepository $userRepository): Response
     {
         return $this->render('user/Users.html.twig', [
@@ -23,7 +25,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
+    #[Route('/newUser', name: 'app_user_new', methods: ['GET', 'POST'])]
     public function new(Request $request, UserRepository $userRepository,UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = new User();
@@ -45,7 +47,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
+    #[Route('/ShowUser/{id}', name: 'app_user_show', methods: ['GET'])]
     public function show(User $user): Response
     {
         return $this->render('user/show.html.twig', [
@@ -53,7 +55,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/edit/{id}', name: 'app_user_edit', methods: ['GET', 'POST'])]
+    #[Route('/UpdateUser/{id}', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -71,7 +73,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
+    #[Route('/DeleteUser/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, UserRepository $userRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {

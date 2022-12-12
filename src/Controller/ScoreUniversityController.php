@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\ScoreUniversity;
 use App\Form\ScoreUniversityType;
 use App\Repository\ScoreUniversityRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/Dashbord')]
+#[Security("is_granted('ROLE_ADMIN')", statusCode:404, message:"Resource not found.")]
 class ScoreUniversityController extends AbstractController
 {
     #[Route('/scoreuniversity', name: 'app_score_university')]

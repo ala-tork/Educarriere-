@@ -23,7 +23,7 @@
                                                 </div>
                                                 <div class="media-body mb-5 text-white">
                                                     <h4 class="mt-0 mb-0"></h4>
-                                                    <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2" /></p>
+                                                    <p class="small mb-4"> </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -34,43 +34,42 @@
                                             <div class="bg-white card mb-4 order-list shadow-sm">
                                                 <div class="row justify-content-around m-5">
                                                     <div class="col-6">
-                                                        <strong><i class="fas fa-book mr-1" /> First Name : {{ user.FirstName }}</strong>
+                                                        <strong><i class="fas fa-book mr-1" ></i> First Name : </strong>
+                                                        <p class="text-muted">
+                                                        {{ user.FirstName }}
+                                                        </p>
                                                         <hr />
                                                     </div>
                                                     <div class="col-4">
-                                                        <strong><i class="fas fa-map-marker-alt mr-1" /> Last Name :  {{ user.lastName }}</strong>
-                                                        <p class="text-muted"></p>
+                                                        <strong><i class="fas fa-book mr-1" ></i> Last Name :  </strong>
+                                                        <p class="text-muted">{{ user.lastName }}</p>
 
                                                         <hr />
                                                     </div>
                                                 </div>
                                                 <div class="row justify-content-around">
                                                     <div class="col-6">
-                                                        <strong><i class="fas fa-book mr-1" /> Email : {{ user.email }}</strong>
+                                                        <strong><i class="fas fa-book mr-1" ></i> Email : </strong>
                                                         <p class="text-muted">
-
+                                                            {{ user.email }}
                                                         </p>
                                                         <hr />
                                                     </div>
-                                                    <div class="col-4">
-                                                        <strong><i class="fas fa-map-marker-alt mr-1" /> Location :</strong>
-                                                        <p class="text-muted"></p>
-
-                                                        <hr />
-                                                    </div>
-                                                </div>
-                                                <div class="row justify-content-around">
                                                     <div class="col-6">
-                                                        <strong><i class="fas fa-pencil-alt mr-1" /> Date Of Birth :</strong>
+                                                        <strong><i class="fas fa-pencil-alt mr-1" ></i> Section Bac : </strong>
                                                         <p class="text-muted">
-
+                                                            {{ user.score.sectionBac }}
                                                         </p>
                                                         <hr />
                                                     </div>
+                                                <div class="row justify-content-around">
                                                     <div class="col-4">
-                                                        <strong><i class="far fa-file-alt mr-1" /> Phone Number :</strong>
-                                                        <p class="text-muted"></p>
+                                                        <strong><i class="far fa-file-alt mr-1" ></i> Score : </strong>
+                                                        <p class="text-muted">{{ user.score.result }}</p>
                                                         <hr/>
+                                                    </div>
+                                                    <div class="col-6">
+
                                                     </div>
                                                 </div>
                                                 <div class="container px-lg-5 m-3">

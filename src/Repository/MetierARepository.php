@@ -39,6 +39,16 @@ class MetierARepository extends ServiceEntityRepository
         }
     }
 
+    public function SearchByName($name){
+        $em=$this->getEntityManager();
+        $query=$em->createQuery('
+        select m from App\Entity\MetierA m
+        where m.nom like :name
+        ');
+        $query->setParameter("name",'%'.$name.'%');
+
+        return $query->getResult();
+    }
 //    /**
 //     * @return MetierA[] Returns an array of MetierA objects
 //     */

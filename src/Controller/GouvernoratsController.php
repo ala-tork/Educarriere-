@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\Governorats;
 use App\Form\GovernoratsType;
 use App\Repository\GovernoratsRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/Dashbord')]
+#[Security("is_granted('ROLE_ADMIN')", statusCode:404, message:"Resource not found.")]
 class GouvernoratsController extends AbstractController
 {
     #[Route('/listGovernorats', name: 'list_gouvernorats')]

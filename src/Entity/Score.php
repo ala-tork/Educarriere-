@@ -61,6 +61,9 @@ class Score
     #[ORM\Column(nullable: true)]
     private ?float $moyenne_arab = null;
 
+    #[ORM\Column]
+    private ?float $result = null;
+
     /**
      * @return float|null
      */
@@ -262,6 +265,18 @@ class Score
     public function setMoyenneArab(?float $moyenne_arab): self
     {
         $this->moyenne_arab = $moyenne_arab;
+
+        return $this;
+    }
+
+    public function getResult(): ?float
+    {
+        return $this->result;
+    }
+
+    public function setResult(float $result): self
+    {
+        $this->result = $result;
 
         return $this;
     }

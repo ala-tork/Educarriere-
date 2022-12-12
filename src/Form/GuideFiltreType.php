@@ -10,6 +10,8 @@ use App\Repository\GovernoratsRepository;
 use App\Repository\UniversityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -45,13 +47,19 @@ class GuideFiltreType extends AbstractType
             ->add('Filiere',EntityType::class,[
                 'class'=>Filiere::class,
                 'placeholder' => 'Choisir une speciality',
-                'multiple'=>false,
-                'expanded'=>false,
+                'multiple'=>true,
+                'expanded'=>true,
                 'required'=>false,
                 'query_builder' => function (FiliereRepository $er) {
                     return $er->createQueryBuilder('S')
                         ->orderBy('S.FiliereName', 'ASC');
                 },
+            ])
+
+            ->add('best',CheckboxType::class,[
+                'label'=>"Meuilleur chois selon votre score",
+                'required'=>false
+
             ])
         ;
     }

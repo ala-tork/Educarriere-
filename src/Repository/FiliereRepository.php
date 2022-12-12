@@ -39,6 +39,27 @@ class FiliereRepository extends ServiceEntityRepository
         }
     }
 
+    public function Mybest($score){
+        $em=$this->getEntityManager();
+        $query=$em->createQuery('
+        select f from App\Entity\Filiere f join f.scoreUniversities s
+        where s.score<= :score
+        ');
+        $query->setParameter("score",$score);
+        $res=$query->getResult();
+        return $res;
+    }
+    public function Filtrer($score,$s){
+        $em=$this->getEntityManager();
+        $query=$em->createQuery('
+        select f from App\Entity\Filiere f join f.scoreUniversities s
+        where s.score<= :score and f.FiliereName like :specialiter
+        ');
+        $query->setParameter("score",$score);
+        $query->setParameter("specialiter",'%'.$s.'%');
+
+        return $query->getResult();;
+    }
 
 //    /**
 //     * @return Filiere[] Returns an array of Filiere objects

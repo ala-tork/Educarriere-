@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +32,20 @@ class RegistrationController extends AbstractController
                 'registrationForm' => $form,
             ]);
         }
-
-
+    }
+    #[Route('/AddAdmin',name:"add_admin")]
+    public function addadmin(UserRepository $repository,UserPasswordHasherInterface $passwordHasher)
+    {
+        $admin=new User();
+        $admin->setEmail("Admin@ed.com");
+        $admin->setPassword("admin");
+        $admin->setPassword(
+            $passwordHasher->hashPassword($admin,$admin->getPassword())
+        );
+        $admin->setFirstName("Ala");
+        $admin->setLastName("Torkhani");
+        $admin->setRoles(["ROLE_ADMIN"]);
+        $repository->save($admin,true);
+        return $this->redirectToRoute("app_login");
     }
 }

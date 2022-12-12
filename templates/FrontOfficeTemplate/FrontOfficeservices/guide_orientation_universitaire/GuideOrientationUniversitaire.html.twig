@@ -72,7 +72,9 @@
 
                                 <h3 class="profile-username text-center">Filtrer</h3>
 
-                                <p class="text-muted text-center"></p>
+                                <p class="text-muted text-center"> votre Score est :
+                                    {{ user.score.result }}
+                                </p>
                                 {{ form_start(filtre) }}
                                 <ul class="list-group list-group-unbordered mb-3">
                                     {#
@@ -88,13 +90,22 @@
                                         </div>
                                     </li>
                                     #}
-
                                     <li class="list-group-item">
+
+                                        <div class="mb-3">
+
+                                            {{ form_widget(filtre.best,{'attr':{'placeholder':'',"class":"form-control"}}) }}
+                                        </div>
+                                    </li>
+
+
+                                    <li class="list-group-item" id="speciality">
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">Sceciality</label>
                                             {{ form_widget(filtre.Filiere,{'attr':{'placeholder':'choisir une speciality',"class":"form-control"}}) }}
                                         </div>
                                     </li>
+
                                 </ul>
 
 
@@ -103,6 +114,7 @@
                                 </div>
 
                                 {{ form_end(filtre,{render_rest:false}) }}
+
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -127,6 +139,7 @@
             }).input().appendTo('#Datatable1_wrapper .col-md-6');
         });
     </script>
+
     {% endblock %}
 {% endblock %}
 

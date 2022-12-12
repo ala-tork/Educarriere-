@@ -5,11 +5,13 @@ namespace App\Controller;
 use App\Entity\Filiere;
 use App\Form\FiliereType;
 use App\Repository\FiliereRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 #[Route('/Dashbord')]
+#[Security("is_granted('ROLE_ADMIN')", statusCode:404, message:"Resource not found.")]
 class FiliereController extends AbstractController
 {
     #[Route('/ListFilieres', name: 'List_filiere')]
