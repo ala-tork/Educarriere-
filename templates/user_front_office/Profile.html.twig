@@ -55,6 +55,7 @@
                                                         </p>
                                                         <hr />
                                                     </div>
+                                                    {% if ((app.user.getRoles()[0])=="ROLE_USER") %}
                                                     <div class="col-6">
                                                         <strong><i class="fas fa-pencil-alt mr-1" ></i> Section Bac : </strong>
                                                         <p class="text-muted">
@@ -68,6 +69,7 @@
                                                         <p class="text-muted">{{ user.score.result }}</p>
                                                         <hr/>
                                                     </div>
+                                                    {% endif %}
                                                     <div class="col-6">
 
                                                     </div>

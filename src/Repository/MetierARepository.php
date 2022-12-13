@@ -49,6 +49,34 @@ class MetierARepository extends ServiceEntityRepository
 
         return $query->getResult();
     }
+    public function filterBySalaire($min,$max){
+        $em=$this->getEntitymanager();
+        $query=$em->createQuery('
+        select m from App\Entity\MetierA m 
+        where m.salaire between :min and :max
+        ');
+        $query->setParameter('min',$min);
+        $query->setParameter('max',$max);
+        return $query->getResult();
+    }
+    public function filterByMin($min){
+        $em=$this->getEntitymanager();
+        $query=$em->createQuery('
+        select m from App\Entity\MetierA m 
+        where m.salaire>= :min
+        ');
+        $query->setParameter('min',$min);
+        return $query->getResult();
+    }
+    public function filterByMax($max){
+        $em=$this->getEntitymanager();
+        $query=$em->createQuery('
+        select m from App\Entity\MetierA m 
+        where m.salaire<= :max
+        ');
+        $query->setParameter('max',$max);
+        return $query->getResult();
+    }
 //    /**
 //     * @return MetierA[] Returns an array of MetierA objects
 //     */

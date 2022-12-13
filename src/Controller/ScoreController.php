@@ -9,6 +9,7 @@ use App\Repository\ScoreUniversityRepository;
 use App\Repository\SectionBacRepository;
 use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use function PHPUnit\Framework\isEmpty;
 
 #[Route("/score")]
+#[Security("is_granted('ROLE_USER')", statusCode:404, message:"Resource not found.")]
 class ScoreController extends AbstractController
 {
     /**
@@ -25,17 +27,7 @@ class ScoreController extends AbstractController
     public function calculscore(Request $request,ScoreRepository $repository): Response
     {
         $score = new Score();
-        #$session= new Session();
         $user = $this->getUser();
-
-        $id=$user->getScore()->getId();
-
-
-        #dd($repository->findBy(["id"=>$id]));
-        $data=$repository->find($id);
-        dd($data);
-        $data=$data["0"];
-        dd();
         $form =$this->createForm(ScoreType::class, $score);
 
         $form->handleRequest($request);

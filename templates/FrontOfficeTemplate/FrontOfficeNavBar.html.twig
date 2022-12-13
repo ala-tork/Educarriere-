@@ -3,7 +3,12 @@
 	<div class="container d-flex align-items-center">
 
 		<h1 class="logo me-auto">
-			<a href="index.html">Educariere</a>
+			{% if ((app.user.getRoles()[0])=="ROLE_USER") %}
+			<a href="{{ path('app_landing_page_ctrl') }}">Educariere</a>
+			{% endif %}
+			{% if ((app.user.getRoles()[0])=="ROLE_ADMIN") %}
+				<a href="{{ path('app_dashbord_ctrl') }}">Educariere</a>
+			{% endif %}
 		</h1>
 		<nav id="navbar" class="navbar" >
 			<ul>

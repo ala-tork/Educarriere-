@@ -11,6 +11,7 @@ use App\Repository\GovernoratsRepository;
 use App\Repository\ScoreUniversityRepository;
 use App\Repository\UniversityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +23,7 @@ class GuideOrientationUniversitaireController extends AbstractController
 
 
     #[Route('/GuideOrientationUniversitaire', name: 'get_GuideOrientationUniversitaire')]
-    #[Security("is_granted('ROLE_USER', post)", statusCode:404, message:"Resource not found.")]
+    #[Security("is_granted('ROLE_USER')", statusCode:404, message:"Resource not found.")]
     public function index(UniversityRepository $repository,FiliereRepository $filiereRepository,Request $request,GovernoratsRepository $grep): Response
     {
         $user = $this->getUser();

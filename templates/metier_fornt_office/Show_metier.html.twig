@@ -94,13 +94,12 @@
                                                 {{ form_start(form) }}
                                                 <ul class="list-group list-group-unbordered mb-3">
                                                     <li class="list-group-item">
-
+                                                        <label for="exampleInputEmail1" class="form-label">Salaire ninimum</label>
+                                                        {{ form_widget(form.Salaire_Mininale) }}
                                                     </li>
                                                     <li class="list-group-item">
-                                                        <b>Following</b> <a class="float-right">543</a>
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <b>Friends</b> <a class="float-right">13,287</a>
+                                                        <label for="exampleInputEmail1" class="form-label">Salaire maximum</label>
+                                                        {{ form_widget(form.Salaire_Maximum) }}
                                                     </li>
                                                 </ul>
 
@@ -176,8 +175,7 @@
                 //var url = $(this).val(); // get selected value
                 //if (url) { // require a URL
                 var value = $('#search').val().toLowerCase();
-                var page = $('#page').text().toLowerCase();
-                   window.location = "http://localhost:8000/metiers/"+value; // redirect
+                   window.location = "http://localhost:8000/metiers/1/4/"+value; // redirect
                 //}
                 return false;
             });
