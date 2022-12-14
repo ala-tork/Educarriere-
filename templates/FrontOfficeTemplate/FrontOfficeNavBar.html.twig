@@ -3,38 +3,27 @@
 	<div class="container d-flex align-items-center">
 
 		<h1 class="logo me-auto">
-			{% if ((app.user.getRoles()[0])=="ROLE_USER") %}
+			{% if app.user != null %}
+			{% if (app.user.getRoles()[0])=="ROLE_USER" %}
 			<a href="{{ path('app_landing_page_ctrl') }}">Educariere</a>
 			{% endif %}
 			{% if ((app.user.getRoles()[0])=="ROLE_ADMIN") %}
 				<a href="{{ path('app_dashbord_ctrl') }}">Educariere</a>
 			{% endif %}
+				{% else %}
+					<a href="{{ path('app_landing_page_ctrl') }}">Educariere</a>
+			{% endif %}
+
 		</h1>
 		<nav id="navbar" class="navbar" >
 			<ul>
 				<li>
-					<a class="nav-link scrollto active" href="{{ path("app_landing_page_ctrl") }}">Home</a>
+					<a class="nav-link scrollto active" href="{{ path("app_landing_page_ctrl") }}">accueil</a>
 				</li>
-				<li>
-					<a class="nav-link scrollto" href="#about">About</a>
-				</li>
-				<li class="dropdown">
-					<a href="#services">Services
-						<i class="bi bi-chevron-down"></i>
-					</a>
-					<ul>
-						<li><a href="{{ path("get_GuideOrientationUniversitaire") }}">Guide d'Orientation univercitaire</a></li>
-						<li><a href="{{ path("calculateur_score") }}">Calcule Score</a></li>
-						<li><a href="{{ path("show_metiers") }}">Metiers</a></li>
-					</ul>
-				</li>
+				<li><a href="{{ path("show_metiers") }}">Metiers</a></li>
+				<li><a href="{{ path("get_GuideOrientationUniversitaire") }}">Guide d'Orientation univercitaire</a></li>
+				<li><a href="{{ path("calculateur_score") }}">Calcule Score</a></li>
 
-				<li>
-					<a class="nav-link scrollto" href="#team">Team</a>
-				</li>
-				<li>
-					<a class="nav-link scrollto" href="#contact">Contact</a>
-				</li>
 
 				{% if app.user %}
 				<div class="dropdown">
@@ -60,10 +49,7 @@
 							aria-labelledby="navbarDropdownMenuAvatar"
 					>
 						<li>
-							<a class="dropdown-item" href="{{ path("profil") }}">My profile</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="#">Settings</a>
+							<a class="dropdown-item" href="{{ path("profil") }}">Profile</a>
 						</li>
 						<li>
 							<a class="btn btn-danger" href="{{ path("app_logout") }}">Logout</a>
