@@ -47,8 +47,8 @@ class GuideFiltreType extends AbstractType
             ->add('Filiere',EntityType::class,[
                 'class'=>Filiere::class,
                 'placeholder' => 'Choisir une speciality',
-                'multiple'=>true,
-                'expanded'=>true,
+                'multiple'=>false,
+                'expanded'=>false,
                 'required'=>false,
                 'query_builder' => function (FiliereRepository $er) {
                     return $er->createQueryBuilder('S')

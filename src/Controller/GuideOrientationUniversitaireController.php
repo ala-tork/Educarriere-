@@ -47,7 +47,7 @@ class GuideOrientationUniversitaireController extends AbstractController
                 #dd($ville->getName(),$universitys->getUniversityName(),$sp->getFiliereName());
             }
             if(($sp!=null) and (($filtre->get('best')->getData())==false)){
-                $sp=$sp["0"];
+                #$sp=$sp["0"];
                 $s=$sp->getFiliereName();
                 $sId=$sp->getId();
 

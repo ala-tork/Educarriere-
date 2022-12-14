@@ -102,16 +102,22 @@
                                     <li class="list-group-item" id="speciality">
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">Sceciality</label>
-                                            {{ form_widget(filtre.Filiere,{'attr':{'placeholder':'choisir une speciality',"class":"form-control"}}) }}
+                                            {{ form_widget(filtre.Filiere,{'attr':{'placeholder':'choisir une speciality',"class":"form-control -select2"}}) }}
                                         </div>
                                     </li>
 
                                 </ul>
 
+                                <div class="row justify-content-between">
+                                    <div class="col-4">
+                                        <input type="submit" value="Filtrer" class="btn btn-success m-4">
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="{{ path('get_GuideOrientationUniversitaire') }}"  value="Annuler" class="btn btn-secondary m-4">Annuler</a>
 
-                                <div class="form-group">
-                                    <input type="submit" value="Filtrer" class="btn btn-success m-4">
+                                    </div>
                                 </div>
+
 
                                 {{ form_end(filtre,{render_rest:false}) }}
 
@@ -137,6 +143,13 @@
                 "info": false,
 
             }).input().appendTo('#Datatable1_wrapper .col-md-6');
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.-select2').select2({
+                placeholder:' '
+            });
         });
     </script>
 
