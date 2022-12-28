@@ -82,17 +82,13 @@ class ScoreController extends AbstractController
         ]);
     }
     #[Route('/math',name:"score_math")]
-    public function math(Request $request,ScoreUniversityRepository $repository):Response
+    public function math(Request $request,ScoreRepository $repository):Response
     {
 
         $scoreMath=0;
         $scorre=0;
-        $score = new Score();
+        $score=new Score();
         $user = $this->getUser();
-        if(!isEmpty($user->getScore())){
-            $score = new Score();
-        }else{ $score=$repository->findOneBy(['id'=>$user->getScore()->getId()]);}
-
         $form=$this->createForm(ScoreType::class,$score);
         $form->handleRequest($request);
         if($form->isSubmitted()){

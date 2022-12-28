@@ -39,7 +39,7 @@ class GuideOrientationUniversitaireController extends AbstractController
                 $filiers=$filiereRepository->Mybest($result);
             }
             if(($sp!=null) and (($filtre->get('best')->getData())==true)){
-                $sp=$sp["0"];
+                #$sp=$sp["0"];
                 $s=$sp->getFiliereName();
                 $result=$user->getScore()->getResult();
                 $filiers=$filiereRepository->Filtrer($result,$s);
@@ -70,20 +70,4 @@ class GuideOrientationUniversitaireController extends AbstractController
 
 
 
-
-
-    #[Route('/GuideOrientationUniversitaire1', name: 'get_GuideOrientationUniversitaire1')]
-    public function index1(Request $request,ScoreUniversityRepository $repository): Response
-    {
-
-        $user = $this->getUser();
-        $filtre=$this->createForm(GuideFiltreType::class);
-        $sc=$repository->findAll();
-        $filtre->handleRequest($request);
-        return $this->render('FrontOfficeTemplate/FrontOfficeservices/guide_orientation_universitaire/GuideOrientationUniversitaire1.html.twig',[
-            "sc"=>$sc,
-            'user'=>$user,
-            'filtre'=> $filtre->createView()
-        ]);
-    }
 }
